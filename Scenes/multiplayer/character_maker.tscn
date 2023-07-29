@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2eesbwyow577"]
+
+[ext_resource type="Script" path="res://Scenes/player_scenes/Character_Maker.gd" id="1_yhube"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uexc2"]
+properties/0/path = NodePath("Name:text")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("namefield:text")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("ColorPickerButton:color")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:alignment")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath(".:position")
+properties/4/spawn = true
+properties/4/sync = true
+
+[node name="CharacterMaker" type="VBoxContainer"]
+offset_right = 88.0
+offset_bottom = 131.0
+script = ExtResource("1_yhube")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="namefield" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "name"
+alignment = 1
+
+[node name="ColourLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Colour:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+layout_mode = 2
+text = "Color"
+color = Color(1, 0, 0, 1)
+
+[node name="Setname" type="Button" parent="."]
+layout_mode = 2
+text = "Set
+"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_uexc2")
+
+[connection signal="text_changed" from="namefield" to="." method="_on_namefield_text_changed"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

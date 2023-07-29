@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgogilea6mnkx"]
+
+[ext_resource type="Script" path="res://scripts/networking/Lobby_Setup.gd" id="1_jwbr4"]
+[ext_resource type="Script" path="res://scripts/Start_game.gd" id="2_buv0w"]
+
+[node name="Multiplayer" type="Node"]
+script = ExtResource("1_jwbr4")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 242.0
+offset_right = -377.0
+offset_bottom = -242.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="UI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address"
+alignment = 1
+
+[node name="CHARACTER_MAKER" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MainMenu" type="PanelContainer" parent="CHARACTER_MAKER"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CHARACTER_MAKER/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="CM_CONTAINER" type="HBoxContainer" parent="CHARACTER_MAKER/MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CHARACTER_MAKER/MainMenu/MarginContainer"]
+_spawnable_scenes = PackedStringArray("res://Scenes/multiplayer/character_maker.tscn")
+spawn_path = NodePath("../CM_CONTAINER")
+
+[node name="Start_game" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("2_buv0w")
+
+[node name="MainMenu" type="PanelContainer" parent="Start_game"]
+anchors_preset = -1
+anchor_top = 0.731
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 94.312
+offset_right = -377.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Start_game/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start_game/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="Start_game/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "START GAME"
+
+[connection signal="pressed" from="UI/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="UI/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Start_game/MainMenu/MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Start_game/MainMenu/MarginContainer/VBoxContainer/StartGame" to="Start_game" method="_on_start_game_pressed"]

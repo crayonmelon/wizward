@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx825dthmc8nd"]
+
+[ext_resource type="Texture2D" uid="uid://dsssuvsl83moi" path="res://Sprites/The_Board.png" id="1_02b6d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d3xjk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jembv"]
+sky_material = SubResource("ProceduralSkyMaterial_d3xjk")
+
+[sub_resource type="Environment" id="Environment_ptmpv"]
+background_mode = 2
+sky = SubResource("Sky_jembv")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0im2i"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_02b6d")
+uv1_scale = Vector3(3, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dwfj3"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gs05y"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Board" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ptmpv")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.919842, 0.392289, 0, -0.392289, 0.919842, 0, 28.9516, 52)
+fov = 19.6
+
+[node name="The_Board" type="MeshInstance3D" parent="."]
+transform = Transform3D(54.621, 0, 0, 0, 1.4, 0, 0, 0, 57.4261, -0.11375, 0.130753, -0.0456085)
+material_override = SubResource("StandardMaterial3D_0im2i")
+mesh = SubResource("BoxMesh_dwfj3")
+skeleton = NodePath("../MultiplayerSpawner")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="The_Board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="The_Board/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_gs05y")

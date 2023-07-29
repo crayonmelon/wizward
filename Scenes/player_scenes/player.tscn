@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb35lf68lax7u"]
+
+[ext_resource type="Script" path="res://scripts/mini_games/PlayerMovement.gd" id="1_jv3q3"]
+[ext_resource type="Texture2D" uid="uid://ba7gyxmiauggl" path="res://icon.svg" id="2_gma0n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_svrof"]
+friction = 0.5
+rough = true
+bounce = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpwc1"]
+albedo_texture = ExtResource("2_gma0n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_xm68h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s84ux"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_881e7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Player" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+physics_material_override = SubResource("PhysicsMaterial_svrof")
+script = ExtResource("1_jv3q3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_wpwc1")
+mesh = SubResource("SphereMesh_xm68h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("SphereShape3D_s84ux")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_881e7")

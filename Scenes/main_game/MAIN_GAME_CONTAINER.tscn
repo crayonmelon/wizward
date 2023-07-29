@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xaknvtvcyjw5"]
+
+[ext_resource type="Script" path="res://scripts/_important/MAIN_GAME_CONTAINER.gd" id="1_45qos"]
+
+[node name="MAIN_GAME" type="Node3D"]
+script = ExtResource("1_45qos")
+
+[node name="LevelMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/main_game/the_board.tscn", "res://Scenes/player_scenes/Player_pawn.tscn")
+spawn_path = NodePath("..")

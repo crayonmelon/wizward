@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b14woq6rpsa6s"]
+
+[ext_resource type="Script" path="res://Scenes/player_scenes/Player_pawn.gd" id="1_8f61q"]
+[ext_resource type="Material" uid="uid://cfctsjibgg1n7" path="res://Materials/MatColour.tres" id="1_116yy"]
+[ext_resource type="ArrayMesh" uid="uid://cevn4trjui8n1" path="res://models/pawn.obj" id="1_fgrcd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yg6b6"]
+points = PackedVector3Array(2.24836, 5.07019, 0.0827032, -2.19517, 4.95598, -0.14391, -2.19517, 4.95598, 0.196662, 0.310621, -0.0568681, 1.10833, 0.196662, 0.399235, -1.73933, 0.0827032, 5.07019, 2.24836, 0.196662, 5.07019, -2.19517, -1.05558, 7.23507, -0.14391, -1.39746, 0.399235, 0.994374, -1.51142, 0.399235, -0.941621, 1.45021, 0.399235, 0.994374, 1.45021, 0.399235, -0.941621, -1.51142, 5.07019, -1.62537, -1.62537, 5.07019, 1.56417, 1.45021, 5.07019, -1.62537, 1.56417, 5.07019, 1.56417, -0.14391, 0.399235, 1.79209, -0.257868, -0.0568681, -1.05558, -0.827662, 7.23507, 0.0827032, -0.257868, 0.399235, -1.73933, 0.196662, 0.399235, 1.79209, 1.79209, 5.07019, -1.16954, -0.485786, 5.07019, -2.08121, -0.257868, -0.0568681, 1.10833, -0.371827, 5.07019, 2.1344, -1.73933, 5.07019, -1.2835, 0.310621, -0.0568681, -0.941621, 1.67813, 5.07019, 1.45021, 2.24836, 4.95598, -0.0299508, 0.994374, 0.399235, -1.2835, 0.766456, 5.07019, -1.96725, -0.14391, 5.07019, -2.19517)
+
+[node name="Player_pawn" type="RigidBody3D"]
+transform = Transform3D(0.997198, 0, 0, 0, 0.997198, 0, 0, 0, 0.997198, 0, 0, 0)
+script = ExtResource("1_8f61q")
+
+[node name="Pawn" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = ExtResource("1_116yy")
+mesh = ExtResource("1_fgrcd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_yg6b6")

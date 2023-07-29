@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsemiqc6gql41"]
+
+[ext_resource type="Script" path="res://scripts/_important/GAMEMANAGER.gd" id="1_7tola"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s22p1"]
+properties/0/path = NodePath(".:PLAYERS")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="GAMEMANAGER" type="Node"]
+script = ExtResource("1_7tola")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_s22p1")

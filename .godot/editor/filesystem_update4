@@ -1,0 +1,16 @@
+res://Scenes/mini_games/ball_minigame.tscn
+res://Scenes/multiplayer/multiplayer_controller.tscn
+res://Scenes/player_scenes/player.tscn
+res://Scenes/main_game/StartScene.tscn
+res://Scenes/GAMEMANAGER.tscn
+res://Scenes/multiplayer/character_maker.tscn
+res://Scenes/main_game/MAIN_GAME_CONTAINER.tscn
+res://Scenes/main_game/the_board.tscn
+res://Scenes/player_scenes/Player_pawn.tscn
+res://Materials/MatColour.tres
+res://Scenes/the_board.tscn
+res://scripts/_important/MAIN_GAME_CONTAINER.gd
+res://Scenes/player_scenes/Player_pawn.gd
+res://Scenes/player_scenes/Character_Maker.gd
+res://scripts/networking/Lobby_Setup.gd
+res://scripts/_important/GAMEMANAGER.gd
