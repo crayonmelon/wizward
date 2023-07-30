@@ -6,7 +6,8 @@ var player_data
 func _enter_tree():
 	peer_id = name.to_int()
 	set_multiplayer_authority(peer_id)
-	set_player_data(GAME_MANAGER.PLAYERS[peer_id])
+	## PLAYER CLASS CREATED FROM THE CONTENTS OF A DICTIONARY CAN BE SEEN HERE
+	set_player_data(Player_Class.new(GAME_MANAGER.PLAYERS[peer_id]))
 
 func set_player_data(player_data: Player_Class):
 	var player_material = $Pawn.get_active_material(0)
