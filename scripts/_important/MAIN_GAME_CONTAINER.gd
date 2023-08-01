@@ -19,4 +19,3 @@ func _ready():
 		player_inst = player_pawn.instantiate()
 		player_inst.name = str(player.id)
 		add_child(player_inst)
-	

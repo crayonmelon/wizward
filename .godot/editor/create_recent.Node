@@ -1,8 +1,8 @@
-RigidBody3D
 MultiplayerSynchronizer
+MultiplayerSpawner
+RigidBody3D
 ColorPickerButton
 ColorRect
-MultiplayerSpawner
 HBoxContainer
 Node
 Node3D

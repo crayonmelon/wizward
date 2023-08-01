@@ -1,3 +1,4 @@
+extends Resource
 class_name Player_Class
 var id: int
 var name: String

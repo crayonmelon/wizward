@@ -12,6 +12,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 @onready var char_container = $CHARACTER_MAKER/MainMenu/MarginContainer/CM_CONTAINER
 var char_maker = preload("res://Scenes/multiplayer/character_maker.tscn")
+var PLAYER_MASTER = preload("res://Scenes/player_scenes/Player_Manager.tscn")
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("QUIT"):
@@ -70,6 +71,10 @@ func add_player(peer_id):
 	var char_maker_inst = char_maker.instantiate()
 	char_maker_inst.name = str(peer_id)
 	char_container.add_child(char_maker_inst)
+	
+	var PLAYER_MASTER_inst = PLAYER_MASTER.instantiate()
+	PLAYER_MASTER_inst._setup(peer_id)
+	GAME_MANAGER.add_child(PLAYER_MASTER_inst)
 
 func _on_start_game_pressed():
 	var maingame = GAME_MANAGER.MAIN_GAME_NODE
