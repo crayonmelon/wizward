@@ -1,8 +1,8 @@
-extends Node
+class_name Player_Data extends Node
 
-@export var PLAYER_DATA : Player_Class
-
-var peer_id
+@export var colour: Color
+@export var peer_id: int
+@export var player_name: String
 
 func _setup(peer_id):
 
@@ -13,6 +13,10 @@ func _setup(peer_id):
 	
 func _ready():
 	
-	PLAYER_DATA = PLAYER_DATA.new()
-	
 	print(get_multiplayer_authority())
+
+func _set_colour(val):
+	colour = val
+
+func _set_name(val):
+	player_name = val
