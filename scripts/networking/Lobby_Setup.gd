@@ -60,12 +60,6 @@ func add_player(peer_id):
 	##		TRY AND PRINT OUT A Player_Class INSTANCE AND YOU'LL SEE IS APPEAR AS A REFERENCE CODE
 	##		I GOT AROUND THIS BY REPLACING THE DATA CLASS INSTANCES WITH JUST ANOTHER DICTIONARY FOR EACH PLAYER
 	##		THIS WAY WHEN YOU TRY AND PASS THE CONTENTS OF A PLAYER INDEX YOU GET THE ACTUAL CONTENTS NOT AN OBJECT REFERENCE
-	var newPlayer = {
-		"id": peer_id,
-		"name": "",
-		"colour": Color.WHITE
-	}
-	GAME_MANAGER.PLAYERS[peer_id] = newPlayer
 
 	#Add character Creator Node
 	var char_maker_inst = char_maker.instantiate()
@@ -73,11 +67,13 @@ func add_player(peer_id):
 	char_container.add_child(char_maker_inst)
 	
 	var PLAYER_MASTER_inst = PLAYER_MASTER.instantiate()
+	PLAYER_MASTER_inst.name = str(peer_id)
 	PLAYER_MASTER_inst._setup(peer_id)
 	GAME_MANAGER.add_child(PLAYER_MASTER_inst)
 
 func _on_start_game_pressed():
 	var maingame = GAME_MANAGER.MAIN_GAME_NODE
+	
 	## PROLLY NEED A BETTER WAY TO GET ACCESS TO THE MAIN SCENE
 	get_tree().get_root().get_node("MAIN").add_child(maingame.instantiate())
 	$CHARACTER_MAKER.hide()

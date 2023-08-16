@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxb3qnlqvh0a1"]
+[gd_scene load_steps=3 format=3 uid="uid://kjo6s4kegv5s"]
 
-[ext_resource type="Script" path="res://Scenes/player_scenes/Player_Manager.gd" id="1_ag4x1"]
+[ext_resource type="Script" path="res://Scenes/player_scenes/Player_Manager.gd" id="1_okci5"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xblyu"]
-properties/0/path = NodePath(".:PLAYER_DATA")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvysf"]
+properties/0/path = NodePath(".:peer_id")
 properties/0/spawn = true
 properties/0/sync = true
 
 [node name="Player_Manager" type="Node" groups=["Player_Manager"]]
-script = ExtResource("1_ag4x1")
+script = ExtResource("1_okci5")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_xblyu")
+replication_config = SubResource("SceneReplicationConfig_tvysf")

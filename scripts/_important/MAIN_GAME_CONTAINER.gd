@@ -15,7 +15,7 @@ func _ready():
 	#If is server add The board scene
 	add_child(Board_Inst)
 	
-	for player in GAME_MANAGER.PLAYERS.values():
+	for player in get_tree().get_nodes_in_group("Player_Manager"):
 		player_inst = player_pawn.instantiate()
-		player_inst.name = str(player.id)
+		player_inst.name = str(player.peer_id)
 		add_child(player_inst)

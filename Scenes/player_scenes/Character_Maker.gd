@@ -1,25 +1,21 @@
 extends VBoxContainer
 
 var peer_id
+var Player_data 
 
 func _enter_tree():
 	$Name.text = str(self.name)
 	peer_id = name.to_int()
 	print(peer_id)
 	set_multiplayer_authority(peer_id)
+	Player_data = GAME_MANAGER.get_player_manager(peer_id)
+	print(Player_data)
 	
 func _on_namefield_text_changed(new_text):
 	
 	if not is_multiplayer_authority(): return
 	
-	## I NOTICED THAT WHEN CHANGING THE NAME OF THE HOST, THE PLAYER DATA IN THE GAMEMANAGER WAS NEVER UPDATED
-	## IF YOU TRY AND MAKE AN RPC CALL TO YOURSELF IT SEEMS TO GO NOWHERE
-	## A CHECK TO ONLY SEND THE CALL IF YOU'RE NOT THE RECIPIENT RESOLVES THIS
-	## IF YOU'RE THE RECIPIENT, JUST UPDATE YOUR OWN GAMEMANAGER
-	if(peer_id != 1):
-		rpc_id(1, "SetPlayerName", peer_id, new_text)
-	else:
-		GAME_MANAGER.PLAYERS[peer_id].name = new_text
+	
 
 @rpc("any_peer")
 func SetPlayerName(peer_id, new_name):
@@ -29,11 +25,11 @@ func _on_color_picker_button_color_changed(new_color):
 	
 	if not is_multiplayer_authority(): return
 	
-	if(peer_id != 1):
-		rpc_id(1, "SetPlayerColor", peer_id, new_color)
-	else:
-		GAME_MANAGER.PLAYERS[peer_id].colour = new_color
+	GAME_MANAGER._Set_Player_Color(peer_id, new_color)
+	
 
 @rpc("any_peer")
 func SetPlayerColor(peer_id, new_color):
+	var nodes_in_group = get_tree().get_nodes_in_group("Player_Manager")
+	print(nodes_in_group)
 	GAME_MANAGER._Set_Player_Color(peer_id, new_color)
