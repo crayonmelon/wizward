@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 var peer_id
 var Player_data 
@@ -6,10 +6,12 @@ var Player_data
 func _enter_tree():
 	$Name.text = str(self.name)
 	peer_id = name.to_int()
-	print(peer_id)
 	set_multiplayer_authority(peer_id)
+	
+	if not is_multiplayer_authority(): return
+	
 	Player_data = GAME_MANAGER.get_player_manager(peer_id)
-	print(Player_data)
+	print("PLAYER DATA:", Player_data)
 	
 func _on_namefield_text_changed(new_text):
 	

@@ -7,8 +7,10 @@ func _enter_tree():
 	peer_id = name.to_int()
 	set_multiplayer_authority(peer_id)
 	
+	#If not owner fucker offer
+	if not is_multiplayer_authority(): return
 	player_data = GAME_MANAGER.get_player_manager(peer_id)
-	
+
 	set_player_data()
 
 func set_player_data():

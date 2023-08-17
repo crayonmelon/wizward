@@ -8,6 +8,7 @@ var player_inst
 func _ready():
 	
 	set_multiplayer_authority(1)
+	
 	#If not host fuck off
 	if not is_multiplayer_authority(): return
 	

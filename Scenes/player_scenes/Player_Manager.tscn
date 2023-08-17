@@ -3,9 +3,12 @@
 [ext_resource type="Script" path="res://Scenes/player_scenes/Player_Manager.gd" id="1_okci5"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvysf"]
-properties/0/path = NodePath(".:peer_id")
+properties/0/path = NodePath(".:colour")
 properties/0/spawn = true
 properties/0/sync = true
+properties/1/path = NodePath(".:player_name")
+properties/1/spawn = true
+properties/1/sync = true
 
 [node name="Player_Manager" type="Node" groups=["Player_Manager"]]
 script = ExtResource("1_okci5")

@@ -47,30 +47,15 @@ func remove_player(peer_id):
 
 func add_player(peer_id):
 	
-	#Create class
-	#var new_player = Player_Class.new()
-	#new_player.name = names.pick_random()
-	#new_player.id = peer_id
-	#new_player.colour = colours.pick_random()
-	#GAME_MANAGER.PLAYERS[peer_id] = new_player
+	var PLAYER_MASTER_inst = PLAYER_MASTER.instantiate()
+	PLAYER_MASTER_inst.name = str(peer_id)
+	GAME_MANAGER.add_child(PLAYER_MASTER_inst)
 	
-	## STORING OBJECT INSTANCES IN THE PLAYERS DICTIONARY CAUSES PROBLEMS ACROSS THE NETWORK
-	## MY UNDERSTANDING IS:
-	##		WHEN AN INSTANCE IS CREATED AND PASSED IN AS A PARAMETER, ONLY A REFERENCE TO THE OBJECT IS PASSED IN
-	##		TRY AND PRINT OUT A Player_Class INSTANCE AND YOU'LL SEE IS APPEAR AS A REFERENCE CODE
-	##		I GOT AROUND THIS BY REPLACING THE DATA CLASS INSTANCES WITH JUST ANOTHER DICTIONARY FOR EACH PLAYER
-	##		THIS WAY WHEN YOU TRY AND PASS THE CONTENTS OF A PLAYER INDEX YOU GET THE ACTUAL CONTENTS NOT AN OBJECT REFERENCE
-
 	#Add character Creator Node
 	var char_maker_inst = char_maker.instantiate()
 	char_maker_inst.name = str(peer_id)
 	char_container.add_child(char_maker_inst)
 	
-	var PLAYER_MASTER_inst = PLAYER_MASTER.instantiate()
-	PLAYER_MASTER_inst.name = str(peer_id)
-	PLAYER_MASTER_inst._setup(peer_id)
-	GAME_MANAGER.add_child(PLAYER_MASTER_inst)
-
 func _on_start_game_pressed():
 	var maingame = GAME_MANAGER.MAIN_GAME_NODE
 	
